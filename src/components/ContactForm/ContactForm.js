@@ -1,4 +1,6 @@
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from "react-redux";
+import { addContact } from "../../redux/contactsSlice"
+import { getContacts } from 'redux/selectors';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -40,15 +42,18 @@ const contactSchema = Yup.object().shape({
         .required(),
 });
 
-export const ContactForm = ({ onSubmit, contactsBase }) => {
+export const ContactForm = () => {
+    const dispatch = useDispatch();
+    const contacts = useSelector(getContacts)
+
     const sendContact = ({ name, number }, { resetForm }) => {
         const contactId = nanoid();
         const newContact = { name, number, id: contactId };
 
         // check uniq contact
         if (!checkUniq(name)) {
-            //move data to App
-            onSubmit(newContact);
+            //send data to store
+            dispatch(addContact(newContact));
             Notify.success('The contact has been sent to storage', {
                 position: 'center-top',
             });
@@ -64,7 +69,7 @@ export const ContactForm = ({ onSubmit, contactsBase }) => {
 
     const checkUniq = name => {
         const newName = name.toLowerCase();
-        return contactsBase.find(({ name }) => name.toLowerCase() === newName);
+        return contacts.find(({ name }) => name.toLowerCase() === newName);
     };
 
     return (
@@ -99,9 +104,4 @@ export const ContactForm = ({ onSubmit, contactsBase }) => {
             </FormWrp>
         </Formik>
     );
-};
-
-ContactForm.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-    contactsBase: PropTypes.array.isRequired,
 };

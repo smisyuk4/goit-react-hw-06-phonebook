@@ -6,8 +6,7 @@ import { BaseContacts, CollectionContacts } from './ListContacts.styled';
 export const ListContacts = ({
     arrayContacts,
     filterContact,
-    filter,
-    onClickBtnRemove,
+    filter,   
 }) => {
     return (
         <BaseContacts>
@@ -17,8 +16,7 @@ export const ListContacts = ({
                     {arrayContacts.map(item => (
                         <Contact
                             contact={item}
-                            key={item.id}
-                            onClickBtnRemove={onClickBtnRemove}
+                            key={item.id}                           
                         />
                     ))}
                 </CollectionContacts>
@@ -30,6 +28,5 @@ export const ListContacts = ({
 ListContacts.propTypes = {
     arrayContacts: PropTypes.array.isRequired,
     filterContact: PropTypes.func.isRequired,
-    filter: PropTypes.string.isRequired,
-    onClickBtnRemove: PropTypes.func.isRequired,
+    filter: PropTypes.string.isRequired,   
 };
