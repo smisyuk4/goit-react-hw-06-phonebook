@@ -1,25 +1,16 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const filterSlice = createSlice({
     name: "filter",
     initialState: '',
     reducers: {
-        addTask: {
+        addFilter: {
             reducer(state, action) {
-                state.push(action.payload);
-            },
-            prepare(text) {
-                return {
-                payload: {
-                    text,
-                    id: nanoid(),
-                    completed: false,
-                },
-                };
+                return action.payload;
             },
         },
     },
 });
 
-export const { addTask } = filterSlice.actions;
+export const { addFilter } = filterSlice.actions;
 export const filterReducer = filterSlice.reducer;

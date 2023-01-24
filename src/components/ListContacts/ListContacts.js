@@ -4,13 +4,12 @@ import { Contact } from 'components/Contact';
 import { BaseContacts, CollectionContacts } from './ListContacts.styled';
 
 export const ListContacts = ({
-    arrayContacts,
-    filterContact,
-    filter,   
+    arrayContacts  
 }) => {
     return (
         <BaseContacts>
-            <Filter filterContact={filterContact} filter={filter} />
+            <Filter/>
+
             {arrayContacts.length !== 0 && (
                 <CollectionContacts>
                     {arrayContacts.map(item => (
@@ -27,6 +26,4 @@ export const ListContacts = ({
 
 ListContacts.propTypes = {
     arrayContacts: PropTypes.array.isRequired,
-    filterContact: PropTypes.func.isRequired,
-    filter: PropTypes.string.isRequired,   
 };
