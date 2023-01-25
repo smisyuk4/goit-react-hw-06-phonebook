@@ -37,10 +37,3 @@ const contactsSlice = createSlice({
 
 export const { addContact, removeContact } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
-
-
-//  JSON.parse(localStorage.getItem(key)) ?? defaultValue
-
-  
-
-//  localStorage.setItem(key, JSON.stringify(state))
